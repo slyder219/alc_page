@@ -66,15 +66,34 @@
 			transform: translateZ(0);
 		}
 
-		.background {
+		.bg-layer {
 			position: absolute;
 			inset: -4%;
-			background-image: url("air_cargo.jpg");
+			background-size: cover;
+			background-position: center;
+			transform: scale(1.08);
+			will-change: transform, opacity;
+		}
+
+		.background {
+			background-image: url("assets/air_cargo_small.jpg");
 			background-size: cover;
 			background-position: center;
 			filter: blur(9px) saturate(1.1) brightness(0.68);
-			transform: scale(1.08);
-			will-change: transform;
+		}
+
+		.background-hires {
+			background-image: url("assets/air_cargo.jpg");
+			background-size: cover;
+			background-position: center;
+			filter: blur(9px) saturate(1.1) brightness(0.68);
+			opacity: 0;
+			transition: opacity 450ms ease;
+			pointer-events: none;
+		}
+
+		.background-hires.loaded {
+			opacity: 1;
 		}
 
 		.aura {
@@ -444,7 +463,8 @@
 <body>
 	<div class="page">
 		<div class="background-wrap" aria-hidden="true">
-			<div class="background" id="bg"></div>
+			<div class="bg-layer background" id="bg-low"></div>
+			<div class="bg-layer background-hires" id="bg-high"></div>
 			<div class="aura aura-one"></div>
 			<div class="aura aura-two"></div>
 			<div class="overlay"></div>
@@ -482,8 +502,23 @@
 
 	<script>
 		const revealItems = document.querySelectorAll('.reveal');
-		const background = document.getElementById('bg');
+		const backgroundLow = document.getElementById('bg-low');
+		const backgroundHigh = document.getElementById('bg-high');
 		const topbar = document.getElementById('topbar');
+
+		const highResImage = new Image();
+		highResImage.src = 'assets/air_cargo.jpg';
+		const revealHighRes = () => {
+			backgroundHigh.classList.add('loaded');
+		};
+
+		if (typeof highResImage.decode === 'function') {
+			highResImage.decode().then(revealHighRes).catch(() => {
+				highResImage.onload = revealHighRes;
+			});
+		} else {
+			highResImage.onload = revealHighRes;
+		}
 
 		const io = new IntersectionObserver(
 			(entries) => {
@@ -505,7 +540,9 @@
 					const y = window.scrollY;
 					const depth = Math.min(y * 0.04, 32);
 					const drift = Math.min(y * 0.008, 8);
-					background.style.transform = `scale(1.08) translateY(${depth}px) translateX(${drift}px)`;
+					const transform = `scale(1.08) translateY(${depth}px) translateX(${drift}px)`;
+					backgroundLow.style.transform = transform;
+					backgroundHigh.style.transform = transform;
 					topbar.classList.toggle('scrolled', y > 28);
 					ticking = false;
 				});
