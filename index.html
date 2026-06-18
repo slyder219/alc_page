@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 	<title>A Leading Concept</title>
 	<meta name="description" content="A Leading Concept" />
+	<meta name="theme-color" content="#0d131d" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="apple-mobile-web-app-title" content="A Leading Concept" />
+	<meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+	<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png" />
+	<link rel="icon" href="favicon_io/favicon.ico" />
+	<link rel="manifest" href="favicon_io/site.webmanifest" />
 	<style>
 		:root {
 			--ink: #f5f7fb;
@@ -27,6 +37,7 @@
 			width: 100%;
 			min-height: 100%;
 			scroll-behavior: smooth;
+			-webkit-text-size-adjust: 100%;
 		}
 
 		body {
@@ -39,6 +50,8 @@
 		.page {
 			position: relative;
 			min-height: 100vh;
+			min-height: 100svh;
+			min-height: 100dvh;
 			isolation: isolate;
 		}
 
@@ -151,6 +164,8 @@
 
 		.hero {
 			min-height: 100vh;
+			min-height: 100svh;
+			min-height: 100dvh;
 			display: grid;
 			place-items: center;
 			padding: 2rem;
@@ -206,6 +221,8 @@
 
 		.contact-section {
 			min-height: 100vh;
+			min-height: 100svh;
+			min-height: 100dvh;
 			display: grid;
 			place-items: center;
 			padding: 2rem;
@@ -280,8 +297,17 @@
 		}
 
 		@media (max-width: 700px) {
+			html,
+			body {
+				overscroll-behavior-y: none;
+			}
+
 			.topbar {
-				top: 0.7rem;
+				top: max(0.7rem, env(safe-area-inset-top));
+				left: max(0.7rem, env(safe-area-inset-left));
+				right: max(0.7rem, env(safe-area-inset-right));
+				width: auto;
+				transform: none;
 				padding: 0.62rem 0.7rem;
 			}
 
@@ -296,15 +322,23 @@
 			}
 
 			.hero-card {
+				width: min(720px, calc(100vw - max(1rem, env(safe-area-inset-left)) - max(1rem, env(safe-area-inset-right))));
 				border-radius: 18px;
 			}
 
 			.contact {
+				max-width: calc(100vw - max(1rem, env(safe-area-inset-left)) - max(1rem, env(safe-area-inset-right)));
 				border-radius: 16px;
 			}
 
 			.scroll-cue {
-				bottom: 0.8rem;
+				bottom: max(0.8rem, env(safe-area-inset-bottom));
+			}
+
+			.hero,
+			.contact-section {
+				padding-left: max(1rem, env(safe-area-inset-left));
+				padding-right: max(1rem, env(safe-area-inset-right));
 			}
 		}
 
