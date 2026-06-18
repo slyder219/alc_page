@@ -505,19 +505,55 @@
 		const backgroundLow = document.getElementById('bg-low');
 		const backgroundHigh = document.getElementById('bg-high');
 		const topbar = document.getElementById('topbar');
+		let highResReady = false;
+		let pageLoaded = false;
+		let browserIdle = false;
+		let highResShown = false;
 
-		const highResImage = new Image();
-		highResImage.src = 'assets/air_cargo.jpg';
-		const revealHighRes = () => {
+		const tryShowHighRes = () => {
+			if (highResShown || !highResReady || !pageLoaded || !browserIdle) {
+				return;
+			}
+			highResShown = true;
 			backgroundHigh.classList.add('loaded');
 		};
 
+		const markIdle = () => {
+			browserIdle = true;
+			tryShowHighRes();
+		};
+
+		const scheduleIdleReveal = () => {
+			if ('requestIdleCallback' in window) {
+				window.requestIdleCallback(markIdle, { timeout: 1200 });
+			} else {
+				window.setTimeout(markIdle, 240);
+			}
+		};
+
+		const highResImage = new Image();
+		highResImage.src = 'assets/air_cargo.jpg';
+		const markHighResReady = () => {
+			highResReady = true;
+			tryShowHighRes();
+		};
+
 		if (typeof highResImage.decode === 'function') {
-			highResImage.decode().then(revealHighRes).catch(() => {
-				highResImage.onload = revealHighRes;
+			highResImage.decode().then(markHighResReady).catch(() => {
+				highResImage.onload = markHighResReady;
 			});
 		} else {
-			highResImage.onload = revealHighRes;
+			highResImage.onload = markHighResReady;
+		}
+
+		if (document.readyState === 'complete') {
+			pageLoaded = true;
+			scheduleIdleReveal();
+		} else {
+			window.addEventListener('load', () => {
+				pageLoaded = true;
+				scheduleIdleReveal();
+			}, { once: true });
 		}
 
 		const io = new IntersectionObserver(
