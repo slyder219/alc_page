@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const email = 'hello@aleadingconcept.com'
+const sliUrl = 'https://app.aleadingconcept.com/sli'
 const Arrow = () => <span aria-hidden="true">↗</span>
 
 const heroSizes = [
@@ -11,12 +12,12 @@ const heroSizes = [
 ]
 
 const steps = [
-  { n: '01', title: 'Reach out', copy: 'Share your shipment details — origin, destination, and timeline — in a quick message.' },
-  { n: '02', title: 'We coordinate', copy: 'Routing, customs documentation, and carrier communication get handled without the back-and-forth.' },
-  { n: '03', title: 'Stay informed', copy: 'Clear updates from pickup to proof of delivery, so you always know where things stand.' },
+  { n: '01', title: 'Submit your SLI', copy: 'Fill out our online Shipper’s Letter of Instruction with origin, destination, cargo details, and timeline. It takes a few minutes.' },
+  { n: '02', title: 'We review and quote', copy: 'Our team reviews your submission, reaches out directly, and comes back with a clear quote and routing plan.' },
+  { n: '03', title: 'Your cargo moves', copy: 'We coordinate carriers and documentation, then keep you updated from pickup to proof of delivery.' },
 ]
 
-const marqueeItems = ['Air freight', 'Customs coordination', 'Shipment visibility', 'Carrier management', 'Direct communication']
+const marqueeItems = ['JFK → DEL', 'Air freight', 'Customs coordination', 'Shipment visibility', 'Carrier management', 'Direct communication']
 
 const canHover = () =>
   typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
@@ -227,21 +228,34 @@ export default function App() {
           <span className="brand-mark">ALC</span>
           <span className="brand-name">A Leading Concept</span>
         </a>
-        <a ref={navContactRef} className="nav-contact" href={`mailto:${email}`}>Start a conversation <Arrow /></a>
+        <a ref={navContactRef} className="nav-contact" href={sliUrl}>Get a quote <Arrow /></a>
       </header>
 
       <main id="top">
         <section className="hero" aria-labelledby="hero-title" ref={heroRef}>
           <div className="hero-inner">
-            <div className="eyebrow"><span /> Independent freight forwarding</div>
+            <div className="eyebrow"><span /> Now moving cargo · JFK → DEL</div>
             <h1 id="hero-title">Cargo in motion.<br /><em>Handled with intent.</em></h1>
-            <p className="hero-copy">ALC is an international air cargo partner built around clear communication, careful coordination, and forward momentum.</p>
+            <p className="hero-copy">International air freight from New York to New Delhi, and anywhere else your cargo needs to go. Send us your shipment details and we’ll get back to you with a quote.</p>
             <div className="hero-actions">
-              <a ref={primaryButtonRef} className="primary-button" href={`mailto:${email}?subject=Freight%20inquiry`}>Talk to ALC <Arrow /></a>
-              <span className="availability">Global reach · Direct attention</span>
+              <a ref={primaryButtonRef} className="primary-button" href={sliUrl}>Get a quote <Arrow /></a>
+              <a className="availability" href={`mailto:${email}?subject=Freight%20inquiry`}>Or email us</a>
             </div>
           </div>
           <div className="scroll-note" aria-hidden="true"><span /> Explore</div>
+        </section>
+
+        <section className="lane" aria-labelledby="lane-title">
+          <div className="lane-card reveal-group">
+            <p className="section-kicker">Featured lane</p>
+            <h2 id="lane-title" className="lane-route">
+              <span><b>JFK</b><small>New York</small></span>
+              <i aria-hidden="true">→</i>
+              <span><b>DEL</b><small>New Delhi</small></span>
+            </h2>
+            <p className="lane-copy">JFK to DEL is our core lane. We focus on it every day, so we know the routings, the carriers, and the paperwork. Shipping somewhere else? We quote other origins and destinations worldwide.</p>
+            <a className="primary-button" href={sliUrl}>Start your SLI <Arrow /></a>
+          </div>
         </section>
 
         <section className="capabilities" aria-labelledby="capabilities-title">
@@ -252,7 +266,7 @@ export default function App() {
           <div className="service-grid reveal-group">
             <article><span className="service-number">01</span><h3>International air freight</h3><p>Responsive coordination for cargo moving across borders and time zones.</p></article>
             <article><span className="service-number">02</span><h3>Shipment visibility</h3><p>Clear updates and straightforward communication from origin to destination.</p></article>
-            <article><span className="service-number">03</span><h3>Personal attention</h3><p>A direct, adaptable approach shaped around the needs of each movement.</p></article>
+            <article><span className="service-number">03</span><h3>Any lane, worldwide</h3><p>JFK to DEL is our specialty, but we can move cargo between most origins and destinations. Just ask.</p></article>
           </div>
         </section>
 
@@ -269,7 +283,7 @@ export default function App() {
         <section className="process" aria-labelledby="process-title">
           <div className="section-intro reveal-group">
             <p className="section-kicker">How it works</p>
-            <h2 id="process-title">A straightforward path from first message to delivery.</h2>
+            <h2 id="process-title">From SLI to delivery, without the runaround.</h2>
           </div>
           <div className="process-steps reveal-group">
             {steps.map((step) => (
@@ -286,13 +300,15 @@ export default function App() {
         <section className="contact-panel reveal-group" id="contact" aria-labelledby="contact-title">
           <p className="section-kicker">Your next move</p>
           <h2 id="contact-title">Let’s get your cargo<br />where it needs to go.</h2>
+          <p className="contact-copy">Submit an SLI and we’ll review it, reach out, and send you a quote.</p>
+          <a className="primary-button contact-button" href={sliUrl}>Submit an SLI <Arrow /></a>
           <a ref={emailLinkRef} className="email-link" href={`mailto:${email}`}>{email} <Arrow /></a>
         </section>
       </main>
 
       <footer>
         <div className="footer-brand">ALC <span>/</span> A Leading Concept</div>
-        <p>International air cargo coordination</p>
+        <p>Air cargo · JFK → DEL &amp; worldwide</p>
         <div className="footer-meta">
           <p>© {new Date().getFullYear()} A Leading Concept</p>
           <a ref={backToTopRef} className="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>

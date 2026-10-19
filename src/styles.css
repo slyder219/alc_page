@@ -96,13 +96,24 @@ h1 em { color: var(--orange); font-style: normal; }
 .hero-actions { display: flex; align-items: center; gap: 28px; margin-top: 42px; animation: enter .8s .24s ease both; }
 .primary-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 42px; min-width: 210px; padding: 17px 19px; background: var(--orange); color: #101820; text-decoration: none; font-weight: 600; font-size: 14px; transition: .2s; }
 .primary-button:hover { background: #ff7c43; box-shadow: 0 14px 30px -12px rgba(255, 107, 44, .55); }
-.availability { color: rgba(255, 255, 255, .67); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
+.availability { color: rgba(255, 255, 255, .67); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; text-decoration: none; border-bottom: 1px solid rgba(255, 255, 255, .3); padding-bottom: 4px; transition: color .2s, border-color .2s; }
+.availability:hover { color: var(--orange); border-color: var(--orange); }
 .scroll-note { position: absolute; right: clamp(24px, 5vw, 76px); bottom: 46px; display: flex; align-items: center; gap: 11px; color: rgba(255, 255, 255, .6); text-transform: uppercase; letter-spacing: .2em; font-size: 9px; writing-mode: vertical-rl; }
 .scroll-note span { width: 1px; height: 45px; background: linear-gradient(var(--orange), transparent); }
 
 /* ---------- reveal on scroll ---------- */
 .reveal-group { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.16, .8, .24, 1), transform .8s cubic-bezier(.16, .8, .24, 1); }
 .reveal-group.is-visible { opacity: 1; transform: none; }
+
+/* ---------- featured lane ---------- */
+.lane { max-width: 1440px; margin: auto; padding: 40px clamp(24px, 8vw, 120px) 0; }
+.lane-card { border: 1px solid var(--line); background: rgba(255, 255, 255, .03); padding: clamp(32px, 5vw, 64px); }
+.lane-route { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(16px, 4vw, 48px); margin: 0; }
+.lane-route span { display: flex; flex-direction: column; gap: 10px; }
+.lane-route b { font: 600 clamp(3.4rem, 10vw, 8rem)/.9 'Manrope'; letter-spacing: -.05em; }
+.lane-route small { color: var(--muted); font: 600 11px/1 'Manrope'; text-transform: uppercase; letter-spacing: .19em; }
+.lane-route i { color: var(--orange); font: 400 clamp(2.4rem, 7vw, 6rem)/1 'Manrope'; font-style: normal; }
+.lane-copy { max-width: 620px; margin: 36px 0 34px; color: #d6d8d8; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.65; }
 
 /* ---------- capabilities ---------- */
 .capabilities { max-width: 1440px; margin: auto; padding: 120px clamp(24px, 8vw, 120px) 130px; }
@@ -158,6 +169,9 @@ h1 em { color: var(--orange); font-style: normal; }
 .contact-panel h2 { position: relative; z-index: 1; }
 .email-link { position: relative; z-index: 1; align-self: flex-start; display: flex; gap: 25px; align-items: center; margin-top: 52px; padding-bottom: 8px; border-bottom: 2px solid var(--orange); color: #0b1b27; text-decoration: none; font-size: clamp(17px, 2vw, 24px); transition: transform .2s cubic-bezier(.2, .8, .2, 1); }
 .email-link span { color: var(--orange); }
+.contact-copy { position: relative; z-index: 1; max-width: 520px; margin: 30px 0 0; color: #3d4a53; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6; }
+.contact-button { position: relative; z-index: 1; align-self: flex-start; margin-top: 36px; }
+.contact-panel .email-link { margin-top: 32px; }
 
 /* ---------- footer ---------- */
 footer { position: relative; z-index: 1; max-width: 1440px; margin: auto; padding: 45px clamp(24px, 5vw, 76px); display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 40px; color: #838d93; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
@@ -195,6 +209,9 @@ footer { position: relative; z-index: 1; max-width: 1440px; margin: auto; paddin
   .process-steps { margin-top: 55px; }
   .marquee-track span { font-size: 1.05rem; padding: 0 18px; gap: 18px; }
   .contact-panel { min-height: 520px; }
+  .lane { padding-top: 10px; }
+  .primary-button { width: 100%; min-width: 0; }
+  .contact-button { align-self: stretch; }
   .email-link { font-size: 14px; gap: 12px; }
   footer { grid-template-columns: 1fr; gap: 13px; text-align: left; }
   .footer-meta { justify-content: space-between; }
