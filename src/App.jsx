@@ -253,7 +253,7 @@ export default function App() {
               <i aria-hidden="true">→</i>
               <span><b>DEL</b><small>New Delhi</small></span>
             </h2>
-            <p className="lane-copy">JFK to DEL is our core lane. We focus on it every day, so we know the routings, the carriers, and the paperwork. Shipping somewhere else? We quote other origins and destinations worldwide.</p>
+            <p className="lane-copy">JFK to DEL is our featured lane. We know the routings, the carriers, and the paperwork. Shipping somewhere else? We quote other origins and destinations worldwide.</p>
             <a className="primary-button" href={sliUrl}>Start your SLI <Arrow /></a>
           </div>
         </section>
