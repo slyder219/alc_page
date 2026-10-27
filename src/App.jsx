@@ -2,7 +2,16 @@ import { useEffect, useRef, useState } from 'react'
 
 const email = 'hello@aleadingconcept.com'
 const sliUrl = 'https://app.aleadingconcept.com/sli'
-const Arrow = () => <span aria-hidden="true">↗</span>
+const Icon = ({ d, className = '' }) => (
+  <svg className={`icon ${className}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+    <path d={d} />
+  </svg>
+)
+const ArrowUpRightIcon = (props) => <Icon d="M7 17 17 7M8 7h9v9" {...props} />
+const ArrowRightIcon = (props) => <Icon d="M5 12h14M13 6l6 6-6 6" {...props} />
+const ArrowUpIcon = (props) => <Icon d="M12 19V5M6 11l6-6 6 6" {...props} />
+const Arrow = () => <span className="icon-wrap" aria-hidden="true"><ArrowUpRightIcon /></span>
+const Route = ({ from, to }) => <em className="route">{from}<ArrowRightIcon className="icon-inline" />{to}</em>
 
 const heroSizes = [
   { max: 700, file: 'air_cargo_600' },
@@ -17,7 +26,7 @@ const steps = [
   { n: '03', title: 'Your cargo moves', copy: 'We coordinate carriers and documentation, then keep you updated from pickup to proof of delivery.' },
 ]
 
-const marqueeItems = ['JFK → DEL', 'Air freight', 'Customs coordination', 'Shipment visibility', 'Carrier management', 'Direct communication']
+const marqueeItems = [<Route from="JFK" to="DEL" />, 'Air freight', 'Customs coordination', 'Shipment visibility', 'Carrier management', 'Direct communication']
 
 const canHover = () =>
   typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches
@@ -234,7 +243,7 @@ export default function App() {
       <main id="top">
         <section className="hero" aria-labelledby="hero-title" ref={heroRef}>
           <div className="hero-inner">
-            <div className="eyebrow"><span /> Now moving cargo · JFK → DEL</div>
+            <div className="eyebrow"><span /> <em className="route">Now moving cargo ·&nbsp;<Route from="JFK" to="DEL" /></em></div>
             <h1 id="hero-title">Cargo in motion.<br /><em>Handled with intent.</em></h1>
             <p className="hero-copy">International air freight from New York to New Delhi, and anywhere else your cargo needs to go. Send us your shipment details and we’ll get back to you with a quote.</p>
             <div className="hero-actions">
@@ -250,7 +259,7 @@ export default function App() {
             <p className="section-kicker">Featured lane</p>
             <h2 id="lane-title" className="lane-route">
               <span><b>JFK</b><small>New York</small></span>
-              <i aria-hidden="true">→</i>
+              <i aria-hidden="true"><ArrowRightIcon /></i>
               <span><b>DEL</b><small>New Delhi</small></span>
             </h2>
             <p className="lane-copy">JFK to DEL is our featured lane. We know the routings, the carriers, and the paperwork. Shipping somewhere else? We quote other origins and destinations worldwide.</p>
@@ -308,10 +317,10 @@ export default function App() {
 
       <footer>
         <div className="footer-brand">ALC <span>/</span> A Leading Concept</div>
-        <p>Air cargo · JFK → DEL &amp; worldwide</p>
+        <p>Air cargo · <Route from="JFK" to="DEL" /> &amp; worldwide</p>
         <div className="footer-meta">
           <p>© {new Date().getFullYear()} A Leading Concept</p>
-          <a ref={backToTopRef} className="back-to-top" href="#top">Back to top <span aria-hidden="true">↑</span></a>
+          <a ref={backToTopRef} className="back-to-top" href="#top">Back to top <span aria-hidden="true"><ArrowUpIcon /></span></a>
         </div>
       </footer>
     </div>

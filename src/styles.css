@@ -222,3 +222,14 @@ footer { position: relative; z-index: 1; max-width: 1440px; margin: auto; paddin
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .hero-inner { transform: none !important; opacity: 1 !important; }
 }
+
+/* ---------- icons ---------- */
+.icon { width: 1em; height: 1em; display: block; flex: none; }
+.icon-wrap { display: inline-flex; align-items: center; }
+.icon-wrap .icon { width: 1.15em; height: 1.15em; }
+.route { font-style: normal; display: inline-flex; align-items: center; gap: .35em; white-space: nowrap; }
+.icon-inline { width: 1.1em; height: 1.1em; }
+.eyebrow .icon-inline, footer .icon-inline { color: var(--orange); }
+.lane-route i { display: inline-flex; }
+.lane-route i .icon { width: .9em; height: .9em; stroke-width: 1.25; }
+.back-to-top span { display: inline-flex; }
