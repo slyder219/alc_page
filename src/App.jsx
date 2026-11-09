@@ -320,6 +320,8 @@ export default function App() {
         <p>Air cargo · <Route from="JFK" to="DEL" /> &amp; worldwide</p>
         <div className="footer-meta">
           <p>© {new Date().getFullYear()} A Leading Concept</p>
+          <a className="footer-link" href="/privacy/">Privacy</a>
+          <a className="footer-link" href="/support/">Support</a>
           <a ref={backToTopRef} className="back-to-top" href="#top">Back to top <span aria-hidden="true"><ArrowUpIcon /></span></a>
         </div>
       </footer>

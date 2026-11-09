@@ -177,8 +177,10 @@ h1 em { color: var(--orange); font-style: normal; }
 footer { position: relative; z-index: 1; max-width: 1440px; margin: auto; padding: 45px clamp(24px, 5vw, 76px); display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 40px; color: #838d93; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; }
 .footer-brand { color: var(--cream); font-weight: 600; }
 .footer-brand span { color: var(--orange); margin: 0 6px; }
-.footer-meta { display: flex; align-items: center; gap: 32px; }
+.footer-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; }
 .footer-meta p { margin: 0; }
+.footer-link { text-decoration: none; }
+.footer-link:hover { color: var(--cream); }
 .back-to-top { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: #838d93; transition: color .2s, transform .2s cubic-bezier(.2, .8, .2, 1); }
 .back-to-top:hover { color: var(--orange); }
 .back-to-top span { transition: transform .2s; }
